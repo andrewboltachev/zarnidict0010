@@ -63,8 +63,10 @@
     (hoplon)
     (reload)
     (cljs)
-    (c/castra-dev-server 'zarnidict0006.api)
-    (serve)
+    (c/castra-dev-server
+      ;'zarnidict0006.api
+      )
+    ;(serve)
     ;(hello_task)
     ))
 
