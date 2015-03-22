@@ -1,9 +1,11 @@
 (page "index.html"
   (:require
     [zarnidict0010.rpc :as rpc]
-    [tailrecursion.hoplon.reload :refer [reload-all]]))
+    ;[tailrecursion.hoplon.reload :refer [reload-all]]
+    ))
 
-(reload-all 1000)
+;(reload-all 1000)
+
 
 (rpc/init)
 
