@@ -45,7 +45,7 @@
 
 ;(require '[demo.boot-build :refer :all])
 
-(deftask hello_task
+'(deftask hello_task
   "Print a friendly greeting."
   []
   (c/castra 'zarnidict0010.api)

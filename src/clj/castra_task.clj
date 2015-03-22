@@ -24,8 +24,15 @@
    :headers {"Content-Type" "text/html"}
    :body "this is 404"})
 
+(defn wrap-dir-index [handler]
+  (fn [req]
+    (handler
+     (update-in req [:uri]
+                #(if (= "/" %) "/index.html" %)))))
+
+
 (core/deftask castra-dev-server
-  (println "111")
+  []
   (let [
     port    3000
     join?   false
@@ -49,6 +56,7 @@
                            (c/castra 'zarnidict0010.api)
                            (file/wrap-file docroot)
                            (file-info/wrap-file-info)
+                           (wrap-dir-index)
                            );(@middleware handle-404)
                   (jetty/run-jetty {:port port :join? join?}))))
             identity
