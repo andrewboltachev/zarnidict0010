@@ -56,6 +56,7 @@
                            (c/castra 'zarnidict0010.api)
                            (file/wrap-file docroot)
                            (file-info/wrap-file-info)
+                           (reload/wrap-reload (core/get-env :source-paths))
                            (wrap-dir-index)
                            );(@middleware handle-404)
                   (jetty/run-jetty {:port port :join? join?}))))

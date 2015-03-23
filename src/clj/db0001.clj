@@ -1,4 +1,4 @@
-;(ns zarnidict0005.db0001)
+(ns db0001)
 (require
  '[datomic.api :as d]
 )

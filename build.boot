@@ -13,6 +13,8 @@
                   [tailrecursion/castra "2.2.2"]
 
                   [com.datomic/datomic-pro "0.9.5130"]
+
+                  [io.hoplon/twitter.bootstrap "0.2.0"]
                   ]
   :source-paths    #{"src/hl" "src/cljs" "src/clj"}
   :resource-paths #{"resources/assets"}
@@ -26,6 +28,11 @@
   '[tailrecursion.boot-hoplon :refer [haml hoplon prerender html2cljs]]
   '[castra_task :as c]
   )
+
+
+(#'clojure.core/load-data-readers)
+(set! *data-readers* (.getRawRoot #'*data-readers*))
+
 
 (deftask dev
   "Build hoplon.io for local development."

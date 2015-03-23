@@ -1,15 +1,25 @@
 (page "index.html"
   (:require
     [zarnidict0010.rpc :as rpc]
-    ;[tailrecursion.hoplon.reload :refer [reload-all]]
     ))
-
-;(reload-all 1000)
-
 
 (rpc/init)
 
 (html
-  (head)
+  (head
+    (link :rel "stylesheet" :href "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+    ;(script :src "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
+    )
   (body
-    (h1 (text "Hello, Hoplon and Castra! ~{rpc/random-number}"))))
+    (div
+      :class "container"
+      (h1
+        (text "Hello, Hoplon and Castra! ~{rpc/random-number}")
+        )
+      (ul
+        (loop-tpl :bindings [{x :name} rpc/articles]
+                  (li (text "~{x}"))))
+        )
+      )
+    )
+  )
