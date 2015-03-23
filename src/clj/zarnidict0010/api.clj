@@ -28,16 +28,17 @@
 ;'[:find ?x ?y :where [?e :raw-article/term ?x] [?e :raw-article/content ?y]]
 (defrpc get-articles-state []
   (let [
-        r0 (take 15
+        r0 
               (d/q
           '[:find ?x :where [?e :raw-article/term ?x]]
           (d/db db/conn))
-              )
+              
         max-len (apply max (map (comp count first) r0))
         r1 (map #(do [
                       (longer ((mari_key_fn first) %) max-len 0)
                       %]) r0)
-        r (mapv last (sort-by first r1))
+        r2 (mapv last (sort-by first r1))
+        r (take 10 r2)
         ]
     {:articles
       (mapv #(do {:name (do %)}) (mapv first r))
