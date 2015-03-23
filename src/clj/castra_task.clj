@@ -2,7 +2,6 @@
   (:require
     [ring.adapter.jetty             :as jetty]
     [boot.core        :as core]
-    ;[tailrecursion.boot.task.ring   :as r]
     [task_ring :as r]
     [tailrecursion.castra.handler   :as c]
 
@@ -41,6 +40,7 @@
     cors?    false
         ]
     (->> [
+          ; TODO
           ;(r/head)
           ;(r/dev-mode)
           ;(if cors? (r/cors #".*localhost.*"))
@@ -64,7 +64,6 @@
           ]
         (filter identity)
         (apply comp))
-    (println "i'm sorry very well")
     (fn [continue] (fn [fileset] (continue fileset)))
     )
   )
