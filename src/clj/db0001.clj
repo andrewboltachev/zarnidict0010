@@ -31,4 +31,3 @@
   :db.install/_attribute :db.part/db
   }
 ])
-

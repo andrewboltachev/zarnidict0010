@@ -32,5 +32,5 @@
   (get-state)
   (get-articles-state)
   (js/setInterval get-state 1000)
-  (js/setInterval get-articles-state 1000)
+  ;(js/setInterval get-articles-state 1000)
   )
