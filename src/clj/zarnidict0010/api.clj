@@ -29,16 +29,17 @@
 (defrpc get-articles-state []
   (let [
         r0 
-              (d/q
+              (time (d/q
           '[:find ?x :where [?e :raw-article/term ?x]]
-          (d/db db/conn))
+          (d/db db/conn)))
               
-        max-len (apply max (map (comp count first) r0))
-        r1 (map #(do [
-                      (longer ((mari_key_fn first) %) max-len 0)
-                      %]) r0)
-        r2 (mapv last (sort-by first r1))
-        r (take 10 r2)
+        ;max-len (apply max (map (comp count first) r0))
+        ;r1 (map #(do [
+        ;              (longer ((mari_key_fn first) %) max-len 0)
+        ;              %]) r0)
+        ;foo (println "111")
+        ;r2 (time (sort-by identity (mapv first r1)))
+        r (take 10 r0)
         ]
     {:articles
       (mapv #(do {:name (do %)}) (mapv first r))

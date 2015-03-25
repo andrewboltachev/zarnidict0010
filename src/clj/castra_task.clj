@@ -33,7 +33,7 @@
 (core/deftask castra-dev-server
   []
   (let [
-    port    3000
+    port    8000
     join?   false
     key     "a 16-byte secret"
     docroot (core/get-env :target-path)

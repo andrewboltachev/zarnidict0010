@@ -5,21 +5,50 @@
 
 (rpc/init)
 
+(defn article-editing [term content]
+  (div
+    (h1 term)
+    (div content)
+    )
+  )
+
+(def route (route-cell "#/home/"))
+
+(with-page-load (.. js/window -location reload))
+
+
+(defc c1 {})
+
+    (.log js/console @c1)
+
+(defn get-hash [href]       (subs href (.indexOf href "#")))
+(defn active?  [href route] (let [h (get-hash href)] (= h (subs route 0 (count h)))))
+
+(defn route-list [route & kvs]
+  (map (fn [[l c]] (c :do-toggle (cell= (active? l route)))) kvs))
+
 (html
   (head
     (link :rel "stylesheet" :href "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
     ;(script :src "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
     )
   (body
-    (div
-      :class "container"
-      (h1
-        (text "Hello, Hoplon and Castra! ~{rpc/random-number}")
+    (a 
+      :do-scroll-to (cell= route))
+      (div
+        :class "container"
+        (h1
+          (text "Hello, Hoplon and Castra! ~{rpc/random-number}")
+          )
+        (ul
+          (loop-tpl :bindings [{x :name} rpc/articles]
+                    (li (a
+                        :href (str "#/" @x)
+                        (text "~{x}")))
+                    ))
+        (div (text "Route is ~{route}"))
+        (div :do-toggle (cell= (active? "#/чокмар" route)) "foo")
+        (div :do-toggle (cell= (active? "#/писте" route)) "bar")
         )
-      (ul
-        (loop-tpl :bindings [{x :name} rpc/articles]
-                  (li (text "~{x}"))))
-        )
-      )
     )
   )
