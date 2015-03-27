@@ -45,3 +45,6 @@
       (mapv #(do {:name (do %)}) (mapv first r))
     })
   )
+
+;(defrpc fetch-article [ & x] {:a x})
+(defrpc fetch-article [x] {:rpc/pre [true]} {x 1})

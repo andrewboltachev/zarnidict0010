@@ -17,10 +17,6 @@
 (with-page-load (.. js/window -location reload))
 
 
-(defc c1 {})
-
-    (.log js/console @c1)
-
 (defn get-hash [href]       (subs href (.indexOf href "#")))
 (defn active?  [href route] (let [h (get-hash href)] (= h (subs route 0 (count h)))))
 
@@ -44,11 +40,13 @@
           (loop-tpl :bindings [{x :name} rpc/articles]
                     (li (a
                         :href (str "#/" @x)
+                        :on-click #((do (println @x) ((rpc/fetch-article) @x)))
                         (text "~{x}")))
                     ))
         (div (text "Route is ~{route}"))
-        (div :do-toggle (cell= (active? "#/чокмар" route)) "foo")
-        (div :do-toggle (cell= (active? "#/писте" route)) "bar")
+        ;(div :do-toggle (cell= (active? "#/чокмар" route)) "foo")
+        ;(div :do-toggle (cell= (active? "#/писте" route)) "bar")
+        (text "~{rpc/fetched-articles}")
         )
     )
   )

@@ -28,9 +28,18 @@
   (mkremote 'zarnidict0010.api/get-articles-state articles-state articles-error articles-loading)
   )
 
+(defc fetched-articles {:foo "bar"})
+(defc fetched-articles-error nil)
+(defc fetched-articles-loading [])
+
+(defn fetch-article []
+  (mkremote 'zarnidict0010.api/fetch-article fetched-articles fetched-articles-error fetched-articles-loading)
+  )
+
+
 (defn init []
   (get-state)
   (get-articles-state)
-  (js/safeSetInterval get-state 1000)
-  (js/safeSetInterval get-articles-state 1000)
+  ;(js/safeSetInterval get-state 1000)
+  ;(js/safeSetInterval get-articles-state 1000)
   )
